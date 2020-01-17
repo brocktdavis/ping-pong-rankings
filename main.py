@@ -42,13 +42,17 @@ def iter_ranks(players):
         player.update_rating()
 
 def print_rankings(players):
+
+    print("Rank | Name                     | Rating")
+
     player_list = list(players.values())
     sorted_list = sorted(player_list, key=Player.get_rating, reverse=True)
     i = 1
     for player in sorted_list:
         rounded_rating = round(player.rating, 2)
-        print("%2s %s %s: %.2f" % \
-            (str(i), player.first, player.last, rounded_rating))
+        name = player.first + ' ' + player.last
+        print("%4s | %-24s | %.2f" % \
+            (str(i), name, rounded_rating))
         i += 1
 
 players = init_players('players.csv')
