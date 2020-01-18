@@ -18,6 +18,8 @@ def init_players(filename):
 
     return players
 
+excluded_players = []
+
 def init_games(players, filename):
 
     with open(filename, 'r') as file:
@@ -29,6 +31,11 @@ def init_games(players, filename):
             score1 = int(strs[1])
             id2 = int(strs[2])
             score2 = int(strs[3])
+
+            if id1 in excluded_players:
+                continue
+            if id2 in excluded_players:
+                continue
 
             p1 = players[id1]
             p2 = players[id2]
@@ -57,6 +64,10 @@ def print_rankings(players):
 
 players = init_players('players.csv')
 games = init_games(players, 'games.csv')
+
+for player in excluded_players:
+    del players[player]
+
 for i in range(2000):
     iter_ranks(players)
 print_rankings(players)
