@@ -26,6 +26,9 @@ class Player:
     def get_rating(self):
         return self.rating
 
+    def get_name(self):
+        return self.first + ' ' + self.last
+
     def __str__(self):
         output = self.last + ',' + self.first + ': ' + str(self.rating)
         return output
