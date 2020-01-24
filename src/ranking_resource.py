@@ -57,15 +57,17 @@ def sort_players(players):
     player_list = list(players.items())
 
     sorted_list = sorted(player_list, key=lambda tup: tup[1].rating, reverse=True)
-    # print(sorted_list)
 
+    cur_rank = 1
     for player in sorted_list:
         player_json = {
             'id': player[0],
             'name': player[1].get_name(),
             'rating': round(player[1].get_rating(), 2)
+            'ranking': cur_rank
         }
         output.append(player_json)
+        cur_rank += 1
     return output 
 
 def get_rankings(excluded_players = []):
